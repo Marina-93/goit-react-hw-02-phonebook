@@ -1,5 +1,6 @@
 import React from 'react';
 import shortid from 'shortid';
+import Section from './components/Section';
 import Form from './components/Form';
 import ContactList from './components/ContactList';
 import Filter from './components/Filter';
@@ -7,10 +8,15 @@ import './App.css'
 
 class App extends React.Component{
   state = {
-  contacts: [],
-  filter: '',
+    contacts: [
+    {id: 'id-1', name: 'Rosie Simpson', number: '459-12-56'},
+    {id: 'id-2', name: 'Hermione Kline', number: '443-89-12'},
+    {id: 'id-3', name: 'Eden Clements', number: '645-17-79'},
+    {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
+    ],
+    filter: '',
   }
-
+  
   formSubmit = ({ name, number }) => {
     const friendName = name;
     if (this.state.contacts.some(({ name }) => name === friendName)) {
@@ -28,9 +34,8 @@ class App extends React.Component{
       return { contacts: [...contacts, list] }
     })
   }
-
-
-changeFilter = (e) => {
+  
+  changeFilter = (e) => {
     this.setState({ filter: e.target.value })
   }
 
@@ -53,20 +58,19 @@ changeFilter = (e) => {
     const filterSearch = this.getFilterSearch();
     return (
       <div className="conteiner">
-        <h1 className="title">Phonebook</h1>
-
-        <Form onSubmit={this.formSubmit} />
-
-        <h2 className="title">Contacts</h2>
-
-        <Filter
+        <Section title="Phonebook">
+          <Form onSubmit={this.formSubmit} />
+        </Section>
+        <Section title="Contacts">
+          <Filter
           value={this.state.filter}
           onChange={this.changeFilter}
-        />
-        <ContactList
+          />
+          <ContactList
           contacts={filterSearch}
           onDelete={this.deleteContact}
-        />
+          />
+        </Section>
       </div>
 
     )

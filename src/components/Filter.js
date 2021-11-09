@@ -18,7 +18,7 @@ class Filter extends React.Component {
           required
         />
       </label>
-    );
+    )
   }
 }
 
