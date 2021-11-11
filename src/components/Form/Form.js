@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import '../App.css'
+import './Form.css'
 
 class Form extends React.Component{
     state = {
@@ -10,24 +10,22 @@ class Form extends React.Component{
 
     handleChange = e => {
     const { name, value } = e.currentTarget
-
     this.setState({[name]: value})
     }
+
     handleSubmit = e => {
         e.preventDefault();
-        
         this.props.onSubmit(this.state)
-
         this.reset()
     }
 
     reset = () => {
-        this.setState({name: '', number: ''})
+        this.setState({ name: '', number: '' })
     }
 
     render() {
         const { name, number } = this.state;
-        const { handleSubmit, handleChange} = this;
+        const { handleSubmit, handleChange } = this;
         return (
             <form onSubmit={handleSubmit} className="form">
                 <label className="label">

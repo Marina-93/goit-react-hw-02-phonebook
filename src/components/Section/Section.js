@@ -1,9 +1,9 @@
 import propTypes from "prop-types";
-import '../App.css'
+import './Section.css'
 
 export default function Section({ title, children }) {
   return (
-    <section className="contaner">
+    <section>
       <h2 className="title">{title}</h2>
       {children}
     </section>
